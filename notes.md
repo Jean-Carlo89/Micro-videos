@@ -1,18 +1,10 @@
-# Montagem do ambiente de desenvolvimento (Docker e IDE)
-# Criar uma aplicação TypeScript
-# Criar entidade de Categoria
-# Criar testes
-# Criar Casos de Uso e Repositório
-# Criar testes
+Em vez de usar ts ou babel pra compilar typescript usamos o swc da vercel nos testes
 
-# Repetir para as outras entidades Genre, Cast member Video
- 
-# Nest.js - Criação de API Rest
-# Integração com RabbitMQ e Encoder de vídeo
-# Testes E2E (End-to-End)
+npm install @swc/core @swc/jest -D
 
-src/
-   project1/
-         package.json
-   project2
-         package.json
+no jest.config
+transform: {
+"^.+\\.ts?$": ["@swc/jest"],
+},
+
+testRegex: ".*\\..*spec\\.ts$",
