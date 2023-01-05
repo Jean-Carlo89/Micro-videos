@@ -8,3 +8,5 @@ transform: {
 },
 
 testRegex: ".*\\..*spec\\.ts$",
+
+setName => nao indica o que quer ser feito

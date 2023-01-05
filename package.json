@@ -7,7 +7,7 @@
     "test": "jest",
     "ts-node": "ts-node",
     "tsc": "tsc",
-    "clean:tsc": "rm tsconfig.tsbuildinfo && tsc"
+    "clean:tsc": "rm -r ./.build && tsc"
   },
   "keywords": [],
   "author": "",
