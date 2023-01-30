@@ -1,4 +1,4 @@
-import UniqueEntityId from "../../../seedwork/domain/unique-entity-id.vo";
+import UniqueEntityId from "../../../seedwork/domain/value-objects/unique-entity-id.vo";
 import { Category, CategoryProps } from "./Category";
 
 describe("Category tests", () => {
@@ -10,7 +10,7 @@ describe("Category tests", () => {
       created_at: new Date(),
       prop1: "some props",
     };
-       const category = new Category(props);
+    const category = new Category(props);
 
     //* !1 versão
     // expect(category.name).toStrictEqual("Movie");

@@ -18,7 +18,15 @@
 
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
-  }
+},
+"customizations": {
+	"vscode": {
+		"extensions": [
+			"dbaeumer.vscode-eslint",
+			"SonarSource.sonarlint-vscode"
+		]
+	}
+}
 
   // "extensions": [
   //   "firsttris.vscode-jest-runner"

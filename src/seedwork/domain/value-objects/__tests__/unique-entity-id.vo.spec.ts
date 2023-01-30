@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
-import { InvalidUuidError } from "../../seedwork/errors/invalid-uuid.error";
-import UniqueEntityId from "./unique-entity-id.vo";
+import { InvalidUuidError } from "../../../errors/invalid-uuid.error";
+import UniqueEntityId from "../unique-entity-id.vo";
 
 // function spyValidateMethod() {
 //   return jest.spyOn(UniqueEntityId.prototype as any, "validate");
@@ -34,7 +34,7 @@ describe("Unique entity id test", () => {
 
     const vo = new UniqueEntityId();
 
-    expect(vo.id).toBeTruthy();
+    expect(vo.value).toBeTruthy();
 
     expect(validateSpy).toHaveBeenCalled();
   });
