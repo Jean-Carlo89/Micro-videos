@@ -44,8 +44,8 @@ describe("Category tests", () => {
 
     data.forEach((i) => {
       const category = new Category(i.props, i.id as any);
-      expect(category.id).not.toBeNull();
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
+      expect(category.uniqueEntityId).not.toBeNull();
+      expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
     });
 
     //   let category = new Category({ name: "Movie" });
@@ -59,5 +59,57 @@ describe("Category tests", () => {
     //   category = new Category({ name: "Movie" }, null);
     //   expect(category.id).not.toBeNull();
     //   expect(uuidValidate(category.id)).toBeTruthy();
+  });
+
+  it("should update name and description", () => {
+    type CategoryData = { props: CategoryProps; id?: UniqueEntityId };
+
+    const props: CategoryProps = {
+      name: "Dança",
+      description: "dance description",
+    };
+    const category = new Category(props);
+    expect(category.props.name).toStrictEqual("Dança");
+    expect(category.props.description).toStrictEqual("dance description");
+
+    const update = {
+      name: "Dança de salão",
+      description: "Dança de salaão description",
+    };
+    category.update(update.name, update.description);
+
+    expect(category.props.name).toStrictEqual(update.name);
+    expect(category.props.description).toStrictEqual(update.description);
+  });
+
+  test("Activate", () => {
+    type CategoryData = { props: CategoryProps; id?: UniqueEntityId };
+
+    const props: CategoryProps = {
+      name: "Dança",
+      description: "dance description",
+    };
+    const category = new Category(props);
+    expect(category.props.is_active).toBe(false);
+
+    category.activate();
+
+    expect(category.props.is_active).toBe(true);
+  });
+
+  test("deactivate", () => {
+    type CategoryData = { props: CategoryProps; id?: UniqueEntityId };
+
+    const props: CategoryProps = {
+      name: "Dança",
+      description: "dance description",
+      is_active: true,
+    };
+    const category = new Category(props);
+    expect(category.props.is_active).toBe(true);
+
+    category.deactivate();
+
+    expect(category.props.is_active).toBe(false);
   });
 });
