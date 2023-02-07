@@ -1,7 +1,14 @@
 import UniqueEntityId from "../../../seedwork/domain/value-objects/unique-entity-id.vo";
 import { Category, CategoryProps } from "./Category";
 
-describe("Category tests", () => {
+//**stub - fake object
+//** monck - fake object com expectativa */
+//** spyOn -espionar uma varavel, classe ou metoddo */
+
+beforeEach(() => {
+  Category.validate = jest.fn();
+});
+describe("Category unit tests", () => {
   test("constructor of category", () => {
     const props = {
       name: "Movie",
@@ -11,7 +18,7 @@ describe("Category tests", () => {
       prop1: "some props",
     };
     const category = new Category(props);
-
+    expect(Category.validate).toHaveBeenCalled();
     //* !1 versão
     // expect(category.name).toStrictEqual("Movie");
     // expect(category.description).toStrictEqual(props.description);
@@ -78,6 +85,7 @@ describe("Category tests", () => {
     };
     category.update(update.name, update.description);
 
+    expect(Category.validate).toHaveBeenCalledTimes(2);
     expect(category.props.name).toStrictEqual(update.name);
     expect(category.props.description).toStrictEqual(update.description);
   });

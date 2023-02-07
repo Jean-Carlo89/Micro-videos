@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { InvalidUuidError } from "../../../errors/invalid-uuid.error";
+import { InvalidUuidError } from "../../errors/invalid-uuid.error";
 import UniqueEntityId from "../unique-entity-id.vo";
 
 // function spyValidateMethod() {
