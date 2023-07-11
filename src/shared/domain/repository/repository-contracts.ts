@@ -10,6 +10,7 @@ export interface RepositoryInterface<E extends Entity> {
 }
 
 export interface SearchableRepositoryInterface<E extends Entity, Filter = string, SearchInput = SearchParams, SearchOutput = SearchResult> extends RepositoryInterface<E> {
+  sortableFields: string[];
   search(props: SearchInput): Promise<SearchOutput>;
 }
 
@@ -70,7 +71,7 @@ export class SearchParams<Filter = string> {
     this._sort = value === null || value === undefined || value === "" ? null : `${value}`;
   }
 
-  get sort_dir() {
+  get sort_dir(): SortDirection | null {
     return this._sort_dir;
   }
   private set sort_dir(value: string | null) {

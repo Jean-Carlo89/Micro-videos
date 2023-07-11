@@ -1,7 +1,7 @@
 import { NotFoundError } from "./../../../shared/domain/errors/not-found.error";
 import { Entity } from "shared/domain/entity/entity";
 import { UniqueEntityId } from "shared/domain/value-objects/unique-entity-id.vo";
-import { RepositoryInterface, SearchParams, SearchResult, SearchableRepositoryInterface } from "./repository-contracts";
+import { RepositoryInterface, SearchParams, SearchResult, SearchableRepositoryInterface, SortDirection } from "./repository-contracts";
 
 export abstract class inMemoryRepository<E extends Entity> implements RepositoryInterface<E> {
   items: E[] = [];
@@ -41,6 +41,8 @@ export abstract class inMemoryRepository<E extends Entity> implements Repository
 }
 
 export abstract class inMemorySearchableRepository<E extends Entity> extends inMemoryRepository<E> implements SearchableRepositoryInterface<E> {
+  sortableFields: string[] = [];
+
   async search(props: SearchParams): Promise<SearchResult<E>> {
     const itemsFiltered = await this.applyFilter(this.items, props.filter);
     const itemsSorted = await this.applySort(itemsFiltered, props.sort, props.sort_dir);
@@ -52,7 +54,27 @@ export abstract class inMemorySearchableRepository<E extends Entity> extends inM
 
   protected abstract applyFilter(items: E[], filter: string | null): Promise<E[]>;
 
-  protected abstract applySort(items: E[], sort: string | null, sort_dir: string | null): Promise<E[]>;
+  protected async applySort(items: E[], sort: string | null, sort_dir: SortDirection | null): Promise<E[]> {
+    if (!sort && !this.sortableFields.includes(sort)) {
+      return items;
+    }
 
-  protected abstract applyPaginate(items: E[], page: SearchParams["page"], per_page: SearchParams["per_page"]): Promise<E[]>;
+    [
+      ...items.sort((a, b) => {
+        if (a.props[sort] < b.props[sort]) {
+          return sort_dir === "asc" ? -1 : 1;
+        }
+
+        if (a.props[sort] > b.props[sort]) {
+          return sort_dir === "asc" ? 1 : -1;
+        }
+
+        return 0;
+      }),
+    ];
+  }
+
+  protected applyPaginate(items: E[], page: SearchParams["page"], per_page: SearchParams["per_page"]): Promise<E[]> {
+    throw new Error();
+  }
 }
