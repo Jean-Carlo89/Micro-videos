@@ -1,6 +1,6 @@
 import { UseCase } from "shared/application/use-case";
 
-import { Category } from "../../../category/domain/entitites/category";
+import { Category } from "../../domain/entities/category";
 import { CategoryRepository } from "../../../category/domain/repository/category.repository";
 import { CategoryOutput } from "../dto/category-output";
 

@@ -1,4 +1,4 @@
-import { Category } from "../../../../category/domain/entitites/category";
+import { Category } from "../../../domain/entities/category";
 import { CategoryInMemoryRepository } from "../../../../category/infra/repository/category-in-memory.repository";
 import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
 import { GetCategoryUseCase } from "../get-category.use-case";

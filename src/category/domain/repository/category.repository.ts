@@ -3,7 +3,7 @@ import {
     SearchResult as DefaultSearchResult,
     SearchableRepositoryInterface,
 } from "../../../shared/domain/repository/repository-contracts";
-import { Category } from "./../entitites/category";
+import { Category } from "../entities";
 
 export namespace CategoryRepository {
     export type Filter = string;
@@ -19,21 +19,3 @@ export namespace CategoryRepository {
             SearchResult
         > {}
 }
-
-// export { CategoryRepository };
-
-// export type CategoryFilter = string;
-
-// export class CategorySearchParams extends SearchParams<CategoryFilter> {}
-
-// export class CategorySearchResult extends SearchResult<
-//     Category,
-//     CategoryFilter
-// > {}
-// export interface CategoryRepository
-//     extends SearchableRepositoryInterface<
-//         Category,
-//         CategoryFilter,
-//         CategorySearchParams,
-//         CategorySearchResult
-//     > {}

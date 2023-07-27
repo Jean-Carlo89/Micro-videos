@@ -1,4 +1,4 @@
-import { Category } from "../../../category/domain/entitites/category";
+import { Category } from "../../domain/entities/category";
 import { Output } from "./../use-cases/create-category.use-case";
 import { CategoryOutputMapper } from "./category-output";
 

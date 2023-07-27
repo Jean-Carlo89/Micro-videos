@@ -1,8 +1,10 @@
+import { UniqueEntityId } from "#shared/domain/value-objects/unique-entity-id.vo";
 import { omit } from "lodash";
 import { validate as uuidValidate } from "uuid";
 
-import { UniqueEntityId } from "../../../shared/domain/value-objects/unique-entity-id.vo";
+// import { UniqueEntityId } from "../../../shared/domain/value-objects/unique-entity-id.vo";
 import { Category, CategoryProperties } from "./category";
+// @core/shared/
 
 describe("Category unit tests", () => {
     //   test("constructor of category", () => {

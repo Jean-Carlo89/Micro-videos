@@ -1,7 +1,7 @@
 import { UseCase } from "shared/application/use-case";
 import { SortDirection } from "shared/domain/repository/repository-contracts";
 
-import { Category } from "../../../category/domain/entitites/category";
+import { Category } from "../../domain/entities/category";
 import { CategoryRepository } from "../../../category/domain/repository/category.repository";
 import { PaginationOutputMapper } from "../../../shared/application/dto/pagination-output";
 import { PaginationOutputDto } from "../../../shared/application/dto/pagination-output";

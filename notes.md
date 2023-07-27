@@ -34,3 +34,18 @@ It wont be enought for tests with swc. to make it understand it:
 }
 }
 }
+
+
+
+
+-----
+
+Usar feraramenta para gera indexes.ts
+
+npm install create-ts-index -D
+
+gera um shell script (cti.sh)
+chmod +x cti.sh
+
+ "cti": "cti",
+        "cti:@core": "sh ./cti.sh"
