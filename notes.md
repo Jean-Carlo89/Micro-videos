@@ -38,7 +38,7 @@ It wont be enought for tests with swc. to make it understand it:
 
 
 
------
+# ----- 5
 
 Usar feraramenta para gera indexes.ts
 
@@ -49,3 +49,61 @@ chmod +x cti.sh
 
  "cti": "cti",
         "cti:@core": "sh ./cti.sh"
+
+
+
+# ---------------- npm Worksapces
+
+- Ferramenta para gerenciar projeto com multiplos projetos/pacotes (Monorepo)
+
+ "workspaces": [
+        "./src/@core",
+        "./src/nestjs"
+    ],
+
+## Como instalar separadamente por projeto?
+
+ex: apenas no pasta @core
+
+npm i axios --worskpace (-w) nome_dentro_do_package_json
+
+## Serve para comands tambem
+
+ex: apenas no pasta @core
+
+npm run command -w nome_dentro_do_package_json
+
+ex2: rodars em todos os projetos
+
+npm run test --workspaces
+
+## Organizando config de typescript
+
+criar na raiz um tsconfig.base.json
+
+
+
+# ------------ Para o nest conseguir importar as camadas do core, adiconar o codigo abaixo no package.json do core
+
+"exports": {
+        "./shared/application": "./dist/shared/application/index.js",
+        "./shared/domain": "./dist/shared/domain/index.js",
+        "./shared/infra": "./dist/shared/infra/index.js",
+        "./category/application": "./dist/category/application/index.js",
+        "./category/domain": "./dist/category/domain/index.js",
+        "./category/infra": "./dist/category/infra/index.js"
+    },
+
+
+## para fazer o ts entender : 
+
+ "typesVersions": {
+        ">=4.0": {
+            "category/domain": [
+                "./dist/category/domain/index.d.ts"
+            ]
+        }
+    },
+-----------
+
+## export de namespace nao funciona com swc, tem que por config adicional
