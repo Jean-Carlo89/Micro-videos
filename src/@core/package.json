@@ -19,6 +19,18 @@
         ">=4.0": {
             "category/domain": [
                 "./dist/category/domain/index.d.ts"
+            ],
+            "category/infra": [
+                "./dist/category/infra/index.d.ts"
+            ],
+            "category/application": [
+                "./dist/category/application/index.d.ts"
+            ],
+            "shared/domain": [
+                "./dist/shared/domain/index.d.ts"
+            ],
+            "shared/application": [
+                "./dist/shared/application/index.d.ts"
             ]
         }
     },
