@@ -1,8 +1,8 @@
 // import { ValidatorRules } from "../../../shared/domain/validators/validator-rules";
-import { Entity } from "../../../shared/domain/entity/entity";
-import { EntityValidationError } from "../../../shared/domain/errors/validation-error";
-import { UniqueEntityId } from "../../../shared/domain/value-objects/unique-entity-id.vo";
-import { CategoryValidatorFactory } from "../validators/category.validator";
+import { Entity } from '../../../shared/domain/entity/entity';
+import { EntityValidationError } from '../../../shared/domain/errors/validation-error';
+import { UniqueEntityId } from '../../../shared/domain/value-objects/unique-entity-id.vo';
+import { CategoryValidatorFactory } from '../validators/category.validator';
 
 export type CategoryProperties = {
     name: string;

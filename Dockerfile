@@ -1,6 +1,10 @@
 FROM node:14.17.0-slim
 
 
+
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list &&\
+    apt-get update && apt-get install -y procps
+
 RUN npm install -g @nestjs/cli@8.2.5 npm@8.5.5
 # Install 'tail' utility
 # it seems that this node version 14.15.4-slim does not gave tail anymore
