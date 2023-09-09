@@ -6,8 +6,12 @@ export default {
     moduleFileExtensions: ['js', 'json', 'ts'],
     rootDir: 'src',
     testRegex: '.*\\..*spec\\.ts$',
+    // transform: {
+    //     '^.+\\.(t|j)s$': '@swc/jest',
+    // },
+
     transform: {
-        '^.+\\.(t|j)s$': '@swc/jest',
+        '^.+\\.(t|j)s$': 'ts-jest',
     },
     collectCoverageFrom: ['**/*.(t|j)s'],
     coverageProvider: 'v8',
