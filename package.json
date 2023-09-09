@@ -9,8 +9,10 @@
         "./src/nestjs"
     ],
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start:dev": "npm run start:dev -w nestjs"
+        "test": "jest",
+        "start:dev": "npm run build:w -w core-micro-videos  && npm run start:dev -w nestjs",
+        "test:core": "npm run test -w core-micro-videos ",
+        "prestart:dev": "npm run build -w core-micro-videos "
     },
     "repository": {
         "type": "git",

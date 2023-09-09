@@ -48,7 +48,7 @@ gera um shell script (cti.sh)
 chmod +x cti.sh
 
  "cti": "cti",
-        "cti:@core": "sh ./cti.sh"
+        "cti:core-micro-videos ": "sh ./cti.sh"
 
 
 
@@ -57,19 +57,19 @@ chmod +x cti.sh
 - Ferramenta para gerenciar projeto com multiplos projetos/pacotes (Monorepo)
 
  "workspaces": [
-        "./src/@core",
+        "./src/core-micro-videos ",
         "./src/nestjs"
     ],
 
 ## Como instalar separadamente por projeto?
 
-ex: apenas no pasta @core
+ex: apenas no pasta core-micro-videos 
 
 npm i axios --worskpace (-w) nome_dentro_do_package_json
 
 ## Serve para comands tambem
 
-ex: apenas no pasta @core
+ex: apenas no pasta core-micro-videos 
 
 npm run command -w nome_dentro_do_package_json
 

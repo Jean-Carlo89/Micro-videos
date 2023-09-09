@@ -43,7 +43,7 @@
         "lint": "eslint --fix --ext .ts .",
         "coverage": "npm run test -- --coverage",
         "cti": "cti",
-        "cti:@core": "sh ./cti.sh",
+        "cti:core-micro-videos ": "sh ./cti.sh",
         "build": "tsc -b ./tsconfig.json",
         "build:w": "tsc -b ./tsconfig.json -w"
     },
