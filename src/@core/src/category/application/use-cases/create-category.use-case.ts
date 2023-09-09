@@ -6,6 +6,7 @@ import { Category } from '../../domain/entities/category';
 import { CategoryOutput } from '../dto/category-output';
 
 export namespace CreateCategoryUseCase {
+    // console.log('test');
     export class UseCase implements DefaultUseCase<Input, Output> {
         constructor(private categoryRepo: CategoryRepository.Repository) {}
 

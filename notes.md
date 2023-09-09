@@ -107,3 +107,19 @@ criar na raiz um tsconfig.base.json
 -----------
 
 ## export de namespace nao funciona com swc, tem que por config adicional
+
+## Diferenca entre & simples e &&
+
+-> comand 1  &  command 2  rodam em paralelo
+
+-> comand 1  &&  command 2  rodam em sequencia
+
+
+# Jest personalized config
+
+in jest.configts of each project we can use 
+
+ displayName: {
+        name: 'nestjs',
+        color: 'magentaBright',
+    },
