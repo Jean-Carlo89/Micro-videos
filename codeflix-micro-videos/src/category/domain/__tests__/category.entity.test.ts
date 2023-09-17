@@ -1,7 +1,13 @@
-import { Uuid } from "../../shared/domain/value-object/uuid.vo";
-import { Category, CategoryConstructorProps } from "../domain/category.entity";
+import { Uuid } from "../../../shared/domain/value-object/uuid.vo";
+import { Category, CategoryConstructorProps } from "../category.entity";
 
 describe("CategoryUnitTests", () => {
+  let validateSpy: any;
+  beforeEach(() => {
+    //*reset valdiate call
+    validateSpy = jest.spyOn(Category, "validate");
+    // Category.validate();
+  });
   describe("Constructor", () => {
     test("should create a category with default values", () => {
       const category = new Category({
@@ -48,7 +54,7 @@ describe("CategoryUnitTests", () => {
     });
     category.changeName("other name");
     expect(category.name).toBe("other name");
-    // expect(validateSpy).toHaveBeenCalledTimes(2);
+    expect(validateSpy).toHaveBeenCalledTimes(2);
   });
 
   test("should change description", () => {
@@ -57,7 +63,7 @@ describe("CategoryUnitTests", () => {
     });
     category.changeDescription("some description");
     expect(category.description).toBe("some description");
-    // expect(validateSpy).toHaveBeenCalledTimes(2);
+    expect(validateSpy).toHaveBeenCalledTimes(2);
   });
 
   test("should active a category", () => {
@@ -88,7 +94,7 @@ describe("CategoryUnitTests", () => {
       expect(category.description).toBeNull();
       expect(category.is_active).toBe(true);
       expect(category.created_at).toBeInstanceOf(Date);
-      // expect(validateSpy).toHaveBeenCalledTimes(1);
+      expect(validateSpy).toHaveBeenCalledTimes(1);
     });
 
     test("should create a category with description", () => {
@@ -101,7 +107,7 @@ describe("CategoryUnitTests", () => {
       expect(category.description).toBe("some description");
       expect(category.is_active).toBe(true);
       expect(category.created_at).toBeInstanceOf(Date);
-      //expect(validateSpy).toHaveBeenCalledTimes(1);
+      expect(validateSpy).toHaveBeenCalledTimes(1);
     });
 
     test("should create a category with is_active", () => {
@@ -114,7 +120,7 @@ describe("CategoryUnitTests", () => {
       expect(category.description).toBeNull();
       expect(category.is_active).toBe(false);
       expect(category.created_at).toBeInstanceOf(Date);
-      // expect(validateSpy).toHaveBeenCalledTimes(1);
+      expect(validateSpy).toHaveBeenCalledTimes(1);
     });
   });
 
