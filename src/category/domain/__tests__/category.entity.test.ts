@@ -88,6 +88,27 @@ describe("CategoryUnitTests", () => {
     });
   });
 
+  describe("Update command", () => {
+    test("should update a category  (name and description)", () => {
+      const category = Category.create({
+        name: "Movie",
+        description: "Fake desc",
+      });
+
+      expect(category.name).toStrictEqual("Movie");
+
+      expect(category.description).toStrictEqual("Fake desc");
+
+      category.update("New name", "new Desc");
+
+      expect(validateSpy).toHaveBeenCalledTimes(3);
+
+      expect(category.name).toStrictEqual("New name");
+
+      expect(category.description).toStrictEqual("new Desc");
+    });
+  });
+
   describe("category_id field", () => {
     const arrange = [{ category_id: null }, { category_id: undefined }, { category_id: new Uuid() }];
     test.each(arrange)("id = %j", ({ category_id }) => {
@@ -162,16 +183,16 @@ describe("CategoryUnitTests", () => {
 
   test("should active a category", () => {
     const category = Category.create({
-      name: "Filmes",
+      name: "Movies trash",
       is_active: false,
     });
     category.activate();
     expect(category.is_active).toBe(true);
   });
 
-  test("should disable a category", () => {
+  test("should deactivate a category", () => {
     const category = Category.create({
-      name: "Filmes",
+      name: "Movies trash",
       is_active: true,
     });
     category.deactivate();
