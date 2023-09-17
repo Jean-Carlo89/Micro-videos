@@ -1,5 +1,6 @@
 import { Uuid } from "../../shared/domain/value-object/uuid.vo";
 import { CategoryValidatorFactory } from "./category.validator";
+import { EntityValidationError } from "../../shared/domain/validators/validation.error";
 
 export type CategoryConstructorProps = {
   category_id?: Uuid;
@@ -58,7 +59,13 @@ export class Category {
   static validate(entity: Category) {
     const validator = CategoryValidatorFactory.create();
 
-    return validator.validate(entity);
+    const isValid = validator.validate(entity);
+
+    //console.log(validator.errors);
+
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
   toJSON() {
