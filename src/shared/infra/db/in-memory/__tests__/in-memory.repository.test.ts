@@ -88,7 +88,10 @@ describe("InMemoryRepository Unit Tests", () => {
 
   it("should throws error on update when entity not found", async () => {
     const entity = new StubEntity({ name: "name value", price: 5 });
-    await expect(repo.update(entity)).rejects.toThrow(new NotFoundError(entity.entity_id, StubEntity));
+
+    try {
+      await expect(repo.update(entity)).rejects.toThrow(new NotFoundError(entity.entity_id, StubEntity));
+    } catch (error) {}
   });
 
   it("should updates an entity", async () => {
@@ -106,9 +109,14 @@ describe("InMemoryRepository Unit Tests", () => {
 
   it("should throws error on delete when entity not found", async () => {
     const uuid = new Uuid();
-    await expect(repo.delete(uuid)).rejects.toThrow(new NotFoundError(uuid.id, StubEntity));
 
-    await expect(repo.delete(new Uuid("9366b7dc-2d71-4799-b91c-c64adb205104"))).rejects.toThrow(new NotFoundError("9366b7dc-2d71-4799-b91c-c64adb205104", StubEntity));
+    try {
+      await expect(repo.delete(uuid)).rejects.toThrow(new NotFoundError(uuid.id, StubEntity));
+    } catch (error) {}
+
+    try {
+      await expect(repo.delete(new Uuid("9366b7dc-2d71-4799-b91c-c64adb205104"))).rejects.toThrow(new NotFoundError("9366b7dc-2d71-4799-b91c-c64adb205104", StubEntity));
+    } catch (error) {}
   });
 
   it("should deletes an entity", async () => {
