@@ -1,24 +1,5 @@
-// import { Uuid } from '../../../shared/domain/value-object/uuid.vo';
-// import { InMemoryRepository, InMemorySearchableRepository } from "../../../shared/infra/db/in-memory/in-memory.repository";
-// import { Category } from "../../domain/category.entity";
-
-// // export class CategoryInMemoryRepository extends InMemoryRepository<Category, Uuid> {
-// //   getEntity(): new (...args: any[]) => Category {
-// //     return Category;
-// //   }
-// // }
-
-// export class CategoryInMemoryRepository extends InMemorySearchableRepository<Category, Uuid> {
-//   protected applyFilter(items: Category[], filter: string): Promise<Category[]> {
-//     throw new Error("Method not implemented.");
-//   }
-//   getEntity(): new (...args: any[]) => Category {
-//     return Category;
-//   }
-// }
-
 import { SortDirection } from "../../../../shared/domain/repository/search-params";
-import { Uuid } from "../../../../shared/domain/value-object/uuid.vo";
+import { Uuid } from "../../../../shared/domain/value-objects/uuid.vo";
 import { InMemorySearchableRepository } from "../../../../shared/infra/db/in-memory/in-memory.repository";
 import { Category } from "../../../domain/category.entity";
 import { CategoryFilter, ICategoryRepository } from "../../../domain/category.repository";

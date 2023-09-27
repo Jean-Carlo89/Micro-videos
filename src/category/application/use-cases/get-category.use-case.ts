@@ -4,7 +4,7 @@
 // import { NotFoundError } from "../../shared/domain/errors/not-found.error";
 // import { Category } from "../domain/category.entity";
 
-import { Uuid } from "../../../shared/domain/value-object/uuid.vo";
+import { Uuid } from "../../../shared/domain/value-objects/uuid.vo";
 import { IUseCase } from "../../../shared/application/use-case.interface";
 import { ICategoryRepository } from "../../domain/category.repository";
 import { NotFoundError } from "../../../shared/domain/errors/not-found.error";

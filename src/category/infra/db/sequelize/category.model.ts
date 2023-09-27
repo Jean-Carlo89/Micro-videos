@@ -1,4 +1,4 @@
-import { Column, Model, DataType, Table, PrimaryKey } from "sequelize-typescript";
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 export type CategoryModelProps = {
   category_id: string;
@@ -26,17 +26,3 @@ export class CategoryModel extends Model<CategoryModelProps> {
   @Column({ allowNull: false, type: DataType.DATE(3) })
   declare created_at: Date;
 }
-
-// interface CategoryModelInterface {
-//   category_id: string;
-
-//   // test: boolean;
-
-//   name: string;
-
-//   description: string | null;
-
-//   is_active: boolean;
-
-//   created_at: Date;
-// }

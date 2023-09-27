@@ -1,12 +1,10 @@
 import { Op } from "sequelize";
-
+import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
+import { Uuid } from "../../../../shared/domain/value-objects/uuid.vo";
 import { Category } from "../../../domain/category.entity";
 import { CategorySearchParams, CategorySearchResult, ICategoryRepository } from "../../../domain/category.repository";
 import { CategoryModel } from "./category.model";
-
-import { Uuid } from "../../../../shared/domain/value-object/uuid.vo";
 import { CategoryModelMapper } from "./category-model-mapper";
-import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
 
 export class CategorySequelizeRepository implements ICategoryRepository {
   sortableFields: string[] = ["name", "created_at"];

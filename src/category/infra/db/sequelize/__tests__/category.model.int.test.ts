@@ -1,15 +1,9 @@
 import { DataType, Sequelize } from "sequelize-typescript";
 import { CategoryModel } from "../category.model";
-import { Category } from "../../../../domain/category.entity";
+import { setupSequelize } from "../../../../../shared/infra/testing/helpers";
 
-describe("CategoryModel Integration tests", () => {
-  let sequelize;
-
-  beforeEach(async () => {
-    sequelize = new Sequelize({ logging: false, dialect: "sqlite", storage: ":memory", models: [CategoryModel] });
-
-    await sequelize.sync({ force: true });
-  });
+describe("CategoryModel Integration Tests", () => {
+  setupSequelize({ models: [CategoryModel] });
 
   test("mapping props", () => {
     const attributesMap = CategoryModel.getAttributes();
@@ -57,6 +51,7 @@ describe("CategoryModel Integration tests", () => {
       type: DataType.DATE(3),
     });
   });
+
   test("create", async () => {
     //arrange
     const arrange = {

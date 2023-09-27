@@ -1,4 +1,4 @@
-import { Uuid } from "../../shared/domain/value-object/uuid.vo";
+import { Uuid } from "../../shared/domain/value-objects/uuid.vo";
 import { CategoryValidatorFactory } from "./category.validator";
 import { EntityValidationError } from "../../shared/domain/validators/validation.error";
 import { Entity } from "../../shared/domain/entity";
@@ -40,19 +40,25 @@ export class Category extends Entity {
   static create(props: CategoryConstructorProps) {
     const category = new Category(props);
 
-    this.validate(category);
+    category.validate();
+
+    //this.validate(category);
 
     return category;
   }
-
   changeName(name: string): void {
     this.name = name;
-    Category.validate(this);
+    this.validate(["name"]);
   }
+  // changeName(name: string): void {
+  //   this.name = name;
+  //   this.validate(["name"]);
+  //   // Category.validate(this);
+  // }
 
   changeDescription(description: string): void {
     this.description = description;
-    Category.validate(this);
+    //Category.validate(this);
   }
 
   activate() {
@@ -68,17 +74,22 @@ export class Category extends Entity {
     this.is_active = false;
   }
 
-  static validate(entity: Category) {
+  validate(fields?: string[]) {
     const validator = CategoryValidatorFactory.create();
-
-    const isValid = validator.validate(entity);
-
-    //console.log(validator.errors);
-
-    if (!isValid) {
-      throw new EntityValidationError(validator.errors);
-    }
+    return validator.validate(this.notification, this, fields);
   }
+
+  // static validate(entity: Category) {
+  //   const validator = CategoryValidatorFactory.create();
+
+  //   const isValid = validator.validate(entity);
+
+  //   //console.log(validator.errors);
+
+  //   if (!isValid) {
+  //     throw new EntityValidationError(validator.errors);
+  //   }
+  // }
 
   static fake() {
     return CategoryFakeBuilder;
