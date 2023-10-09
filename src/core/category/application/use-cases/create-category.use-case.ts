@@ -3,9 +3,9 @@ import { Category } from "../../domain/category.entity";
 import { ICategoryRepository } from "../../domain/category.repository";
 import { CategoryOutput, CategoryOutputMapper } from "./common/category-output";
 
-export class CreateCategoryUseCase implements IUseCase<CreateCAtegoryInput, CreateCategoryOutput> {
+export class CreateCategoryUseCase implements IUseCase<CreateCategoryInput, CreateCategoryOutput> {
   constructor(private readonly categoryRepo: ICategoryRepository) {}
-  async execute(input: CreateCAtegoryInput): Promise<CreateCategoryOutput> {
+  async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     const entity = Category.create(input);
 
     await this.categoryRepo.insert(entity);
@@ -22,7 +22,7 @@ export class CreateCategoryUseCase implements IUseCase<CreateCAtegoryInput, Crea
   }
 }
 
-export type CreateCAtegoryInput = {
+export type CreateCategoryInput = {
   name: string;
   description?: string | null;
 

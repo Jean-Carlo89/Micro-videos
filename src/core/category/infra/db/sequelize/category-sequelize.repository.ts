@@ -1,13 +1,17 @@
-import { Op } from "sequelize";
-import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
-import { Uuid } from "../../../../shared/domain/value-objects/uuid.vo";
-import { Category } from "../../../domain/category.entity";
-import { CategorySearchParams, CategorySearchResult, ICategoryRepository } from "../../../domain/category.repository";
-import { CategoryModel } from "./category.model";
-import { CategoryModelMapper } from "./category-model-mapper";
+import { Op } from 'sequelize';
+import { NotFoundError } from '../../../../shared/domain/errors/not-found.error';
+import { Uuid } from '../../../../shared/domain/value-objects/uuid.vo';
+import { Category } from '../../../domain/category.entity';
+import {
+  CategorySearchParams,
+  CategorySearchResult,
+  ICategoryRepository,
+} from '../../../domain/category.repository';
+import { CategoryModel } from './category.model';
+import { CategoryModelMapper } from './category-model-mapper';
 
 export class CategorySequelizeRepository implements ICategoryRepository {
-  sortableFields: string[] = ["name", "created_at"];
+  sortableFields: string[] = ['name', 'created_at'];
 
   constructor(private categoryModel: typeof CategoryModel) {}
 
@@ -17,7 +21,9 @@ export class CategorySequelizeRepository implements ICategoryRepository {
   }
 
   async bulkInsert(entities: Category[]): Promise<void> {
-    const modelsProps = entities.map((entity) => CategoryModelMapper.toModel(entity).toJSON());
+    const modelsProps = entities.map((entity) =>
+      CategoryModelMapper.toModel(entity).toJSON(),
+    );
     await this.categoryModel.bulkCreate(modelsProps);
   }
 
@@ -68,7 +74,9 @@ export class CategorySequelizeRepository implements ICategoryRepository {
           name: { [Op.like]: `%${props.filter}%` },
         },
       }),
-      ...(props.sort && this.sortableFields.includes(props.sort) ? { order: [[props.sort, props.sort_dir]] } : { order: [["created_at", "desc"]] }),
+      ...(props.sort && this.sortableFields.includes(props.sort)
+        ? { order: [[props.sort, props.sort_dir]] }
+        : { order: [['created_at', 'desc']] }),
       offset,
       limit,
     });
