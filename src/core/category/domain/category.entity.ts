@@ -1,9 +1,9 @@
-import { Uuid } from "../../shared/domain/value-objects/uuid.vo";
-import { CategoryValidatorFactory } from "./category.validator";
-import { EntityValidationError } from "../../shared/domain/validators/validation.error";
-import { Entity } from "../../shared/domain/entity";
-import { ValueObject } from "../../shared/domain/value-object";
-import { CategoryFakeBuilder } from "./category-fake.builder";
+import { Uuid } from '../../shared/domain/value-objects/uuid.vo';
+import { CategoryValidatorFactory } from './category.validator';
+import { EntityValidationError } from '../../shared/domain/validators/validation.error';
+import { Entity } from '../../shared/domain/entity';
+import { ValueObject } from '../../shared/domain/value-object';
+import { CategoryFakeBuilder } from './category-fake.builder';
 
 export type CategoryConstructorProps = {
   category_id?: Uuid;
@@ -48,7 +48,7 @@ export class Category extends Entity {
   }
   changeName(name: string): void {
     this.name = name;
-    this.validate(["name"]);
+    this.validate(['name']);
   }
   // changeName(name: string): void {
   //   this.name = name;

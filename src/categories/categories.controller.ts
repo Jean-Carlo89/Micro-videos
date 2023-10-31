@@ -10,9 +10,14 @@ import {
 
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CategorySequelizeRepository } from '@core/category/infra/db/sequelize/category-sequelize.repository';
 
 @Controller('categories')
 export class CategoriesController {
+  constructor(private categoryRepo: CategorySequelizeRepository) {
+    console.log(this.categoryRepo);
+  }
+
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return null;
