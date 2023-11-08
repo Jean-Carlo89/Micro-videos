@@ -1,37 +1,35 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CategoriesController } from './categories.controller';
-import { CategorySequelizeRepository } from '@core/category/infra/db/sequelize/category-sequelize.repository';
-import { CategoryModel } from '@core/category/infra/db/sequelize/category.model';
-import { SequelizeModule, getModelToken } from '@nestjs/sequelize';
+//import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '@core/../../src/database/database.module';
+import { CategoriesModule } from './categories.module';
+import { ConfigModule } from '@core/../../src/config/config.module';
+import { ConfigService } from '@nestjs/config';
 
 describe('CategoriesController', () => {
   let controller: CategoriesController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        SequelizeModule.forRoot({
-          dialect: 'sqlite' as any,
-          host: ':memory',
-          logging: false,
-          models: [CategoryModel],
-        }),
+      // imports: [DatabaseModule, SequelizeModule.forFeature([CategoryModel])],
 
-        SequelizeModule.forFeature([CategoryModel]),
-      ],
-      controllers: [CategoriesController],
+      imports: [ConfigModule.forRoot(), DatabaseModule, CategoriesModule],
 
-      providers: [
-        {
-          provide: CategorySequelizeRepository,
-          useFactory: (categoryModel: typeof CategoryModel) =>
-            new CategorySequelizeRepository(categoryModel),
-          inject: [getModelToken(CategoryModel)],
-        },
-      ],
+      //** do not need it anymore because it is inside categories module */
+      // providers: [
+      //   {
+      //     provide: CategorySequelizeRepository,
+      //     useFactory: (categoryModel: typeof CategoryModel) =>
+      //       new CategorySequelizeRepository(categoryModel),
+      //     inject: [getModelToken(CategoryModel)],
+      //   },
+      // ],
+      // controllers: [CategoriesController],
     }).compile();
 
     controller = module.get<CategoriesController>(CategoriesController);
+
+    console.log(module.get(ConfigService).get('DB_HOST'));
   });
 
   it('should be defined', () => {

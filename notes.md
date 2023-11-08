@@ -1,0 +1,1 @@
+---> Install @nestjs/config for diferente envs and other configs
