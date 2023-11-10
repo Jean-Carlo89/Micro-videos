@@ -3,7 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigService } from '@nestjs/config';
 // import { CONFIG_SCHEMA_TYPE } from '../config-module/config.module';
 
-import { CONFIG_SCHEMA_TYPE } from 'src/config-module/config.module';
+import { CONFIG_SCHEMA_TYPE } from '@core/../../src/nest-modules/config-module/config.module';
 // import { CategoryModel } from '@core/../category/infra/db/sequelize/category.model';
 
 import { CategoryModel } from '@core/category/infra/db/sequelize/category.model';
