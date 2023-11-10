@@ -11,6 +11,7 @@ const models = [CategoryModel];
       host: ':memory',
       logging: false,
       models: models,
+      autoLoadModels: true,
     }),
   ],
 })
