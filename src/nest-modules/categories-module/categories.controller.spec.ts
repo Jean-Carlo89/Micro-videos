@@ -31,7 +31,7 @@ describe('CategoriesController', () => {
 
     controller = module.get<CategoriesController>(CategoriesController);
 
-    console.log(module.get(ConfigService).get('DB_HOST'));
+    // console.log(module.get(ConfigService).get('DB_HOST'));
   });
 
   it('should be defined', () => {
