@@ -1,10 +1,14 @@
-import { NotFoundError } from "../../../../../shared/domain/errors/not-found.error";
-import { InvalidUuidError, Uuid } from "../../../../../shared/domain/value-objects/uuid.vo";
-import { Category } from "../../../../domain/category.entity";
-import { CategoryInMemoryRepository } from "../../../../infra/db/in-memory/category-in-memory.repository";
-import { GetCategoryUseCase } from "../../get-category.use-case";
+import { NotFoundError } from '../../../../../shared/domain/errors/not-found.error';
+import {
+  InvalidUuidError,
+  Uuid,
+} from '../../../../../shared/domain/value-objects/uuid.vo';
+import { Category } from '../../../../domain/category.entity';
+import { CategoryInMemoryRepository } from '../../../../infra/db/in-memory/category-in-memory.repository';
+import { GetCategoryUseCase } from '../get-category.use-case';
+// import { GetCategoryUseCase } from '../../get-category.use-case';
 
-describe("Get CAtegory use case unit tests", () => {
+describe('Get CAtegory use case unit tests', () => {
   let useCase: GetCategoryUseCase;
   let repo: CategoryInMemoryRepository;
 
@@ -13,9 +17,9 @@ describe("Get CAtegory use case unit tests", () => {
     useCase = new GetCategoryUseCase(repo);
   });
 
-  it("should throw error  when entity not found", async () => {
+  it('should throw error  when entity not found', async () => {
     await expect(async () => {
-      await useCase.execute({ id: "fake id" });
+      await useCase.execute({ id: 'fake id' });
     }).rejects.toThrow(new InvalidUuidError());
 
     const uuid = new Uuid();
@@ -27,8 +31,8 @@ describe("Get CAtegory use case unit tests", () => {
     // throw new NotFoundError(uuid.id, Category);
   });
 
-  it("should return na category", async () => {
-    const items = [Category.create({ name: "Movie" })];
+  it('should return na category', async () => {
+    const items = [Category.create({ name: 'Movie' })];
 
     repo.items = items;
 
@@ -40,7 +44,7 @@ describe("Get CAtegory use case unit tests", () => {
 
     expect(output).toStrictEqual({
       id: items[0].category_id.id,
-      name: "Movie",
+      name: 'Movie',
       description: null,
       is_active: true,
       created_at: items[0].created_at,
