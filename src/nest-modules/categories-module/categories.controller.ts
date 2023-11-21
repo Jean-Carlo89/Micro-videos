@@ -7,6 +7,9 @@ import {
   Param,
   Delete,
   Inject,
+  ParseUUIDPipe,
+  HttpCode,
+  Query,
 } from '@nestjs/common';
 
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -19,6 +22,7 @@ import { DeleteCategoryUseCase } from '@core/category/application/use-cases/dele
 import { ListCategoriesUseCase } from '@core/category/application/use-cases/list-categories/list-categories.use-case';
 import { CategoryPresenter } from './categories.presenter';
 import { CategoryOutput } from '@core/category/application/use-cases/common/category-output';
+import { SearchCategoriesDto } from './dto/search-categories.dto';
 
 @Controller('categories')
 export class CategoriesController {
@@ -32,7 +36,7 @@ export class CategoriesController {
   private deleteUseCase: DeleteCategoryUseCase;
 
   @Inject(GetCategoryUseCase)
-  private getCategoryUseCaseUseCase: GetCategoryUseCase;
+  private getUseCase: GetCategoryUseCase;
 
   @Inject(ListCategoriesUseCase)
   private listUseCase: ListCategoriesUseCase;
@@ -47,26 +51,36 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll() {
-    return null;
+  async search(@Query() searchParamsDto: SearchCategoriesDto) {
+    const output = await this.listUseCase.execute(searchParamsDto);
+
+    return C;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return null;
+  async findOne(@Param('id') id: string) {
+    const output = await this.getUseCase.execute({ id });
+
+    return CategoriesController.serialize(output);
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
+  async update(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    return null;
+    const output = await this.updateUsecase.execute({
+      ...updateCategoryDto,
+      id,
+    });
+
+    return CategoriesController.serialize(output);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return null;
+    return this.deleteUseCase.execute({ id });
   }
 
   static serialize(output: CategoryOutput) {
